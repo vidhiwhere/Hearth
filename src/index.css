@@ -1,0 +1,59 @@
+/* ============================================================
+   HEARTH BAKERY — Global Styles
+   Palette: Mocha · Caramel · Cream · Warm Ivory
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --mocha:         #3B2314;
+  --mocha-mid:     #5A3825;
+  --mocha-light:   #7A5240;
+  --caramel:       #C47F2A;
+  --caramel-light: #E2A84B;
+  --caramel-glow:  #F5C97A;
+  --cream:         #FDF6EC;
+  --ivory:         #F7EDD8;
+  --warm-white:    #FFFAF3;
+  --text-dark:     #2A1A0E;
+  --text-mid:      #5C4030;
+  --text-light:    #9A7A62;
+  --shadow-warm:   rgba(59,35,20,0.18);
+  --transition:    all 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--text-dark);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 7px; }
+::-webkit-scrollbar-track { background: var(--ivory); }
+::-webkit-scrollbar-thumb { background: var(--caramel); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--mocha-light); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; height: 48px; }
+  50% { opacity: 1; height: 60px; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25%, 75% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+}
