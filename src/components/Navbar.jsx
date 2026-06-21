@@ -1,51 +1,54 @@
 import { useState, useEffect } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import styles from './Navbar.module.css';
 
+const links = [
+  { label: 'Home',    to: '/'        },
+  { label: 'Menu',    to: '/menu'    },
+  { label: 'About',   to: '/about'   },
+  { label: 'Contact', to: '/contact' },
+];
+
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [active, setActive]     = useState('home');
+  const [scrolled, setScrolled]     = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 60);
-      const sections = ['home','menu','about','contact'];
-      let curr = 'home';
-      sections.forEach(id => {
-        const el = document.getElementById(id);
-        if (el && window.scrollY >= el.offsetTop - 130) curr = id;
-      });
-      setActive(curr);
-    };
+    const onScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const links = ['Home','Menu','About','Contact'];
+  // Close mobile menu on route change
+  useEffect(() => setMobileOpen(false), [location]);
 
   return (
     <>
       <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
         <div className={styles.inner}>
-          <a href="#home" className={styles.logo}>
+          <NavLink to="/" className={styles.logo}>
             <span className={styles.logoIcon}>🔥</span>
             <span className={styles.logoText}>Hearth</span>
-          </a>
+          </NavLink>
 
           <ul className={styles.links}>
             {links.map(l => (
-              <li key={l}>
-                <a
-                  href={`#${l.toLowerCase()}`}
-                  className={`${styles.link} ${active === l.toLowerCase() ? styles.linkActive : ''}`}
+              <li key={l.to}>
+                <NavLink
+                  to={l.to}
+                  end={l.to === '/'}
+                  className={({ isActive }) =>
+                    `${styles.link} ${isActive ? styles.linkActive : ''}`
+                  }
                 >
-                  {l}
-                </a>
+                  {l.label}
+                </NavLink>
               </li>
             ))}
           </ul>
 
-          <a href="#menu" className={styles.cta}>Order Now</a>
+          <NavLink to="/contact" className={styles.cta}>Order Now</NavLink>
 
           <button
             className={styles.hamburger}
@@ -61,18 +64,20 @@ export default function Navbar() {
       <div className={`${styles.overlay} ${mobileOpen ? styles.overlayOpen : ''}`}>
         <button className={styles.overlayClose} onClick={() => setMobileOpen(false)}>✕</button>
         {links.map(l => (
-          <a
-            key={l}
-            href={`#${l.toLowerCase()}`}
-            className={styles.overlayLink}
-            onClick={() => setMobileOpen(false)}
+          <NavLink
+            key={l.to}
+            to={l.to}
+            end={l.to === '/'}
+            className={({ isActive }) =>
+              `${styles.overlayLink} ${isActive ? styles.overlayLinkActive : ''}`
+            }
           >
-            {l}
-          </a>
+            {l.label}
+          </NavLink>
         ))}
-        <a href="#menu" className={styles.cta} style={{ marginTop: '1.5rem' }} onClick={() => setMobileOpen(false)}>
+        <NavLink to="/contact" className={styles.cta} style={{ marginTop: '1.5rem' }}>
           Order Now
-        </a>
+        </NavLink>
       </div>
     </>
   );

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -8,10 +9,10 @@ export default function Footer() {
 
           {/* Column 1: Brand */}
           <div className={styles.brand}>
-            <a href="#home" className={styles.logo}>
+            <Link to="/" className={styles.logo}>
               <div className={styles.logoIcon}>🔥</div>
               <span className={styles.logoText}>Hearth</span>
-            </a>
+            </Link>
             <p className={styles.desc}>
               Artisan baking rooted in tradition, crafted with love. Every loaf, every cake, every morning — made just for you.
             </p>
@@ -27,10 +28,10 @@ export default function Footer() {
           <div className={styles.col}>
             <h4>Quick Links</h4>
             <ul>
-              <li><a href="#home">Home</a></li>
-              <li><a href="#menu">Menu</a></li>
-              <li><a href="#about">About Us</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/menu">Menu</Link></li>
+              <li><Link to="/about">About Us</Link></li>
+              <li><Link to="/contact">Contact</Link></li>
             </ul>
           </div>
 
@@ -38,11 +39,11 @@ export default function Footer() {
           <div className={styles.col}>
             <h4>Our Menu</h4>
             <ul>
-              <li><a href="#menu">Breads & Loaves</a></li>
-              <li><a href="#menu">Pastries</a></li>
-              <li><a href="#menu">Celebration Cakes</a></li>
-              <li><a href="#menu">Coffee & Drinks</a></li>
-              <li><a href="#menu">Seasonal Specials</a></li>
+              <li><Link to="/menu">Breads &amp; Loaves</Link></li>
+              <li><Link to="/menu">Pastries</Link></li>
+              <li><Link to="/menu">Celebration Cakes</Link></li>
+              <li><Link to="/menu">Coffee &amp; Drinks</Link></li>
+              <li><Link to="/menu">Seasonal Specials</Link></li>
             </ul>
           </div>
 
@@ -61,7 +62,7 @@ export default function Footer() {
 
         {/* Footer Bottom */}
         <div className={styles.bottom}>
-          <p>© 2024 Hearth Bakery. Baked with light & love in Pune, India. 🔥</p>
+          <p>© 2024 Hearth Bakery. Baked with light &amp; love in Pune, India. 🔥</p>
           <div className={styles.bottomLinks}>
             <a href="#">Privacy Policy</a>
             <a href="#">Terms of Service</a>

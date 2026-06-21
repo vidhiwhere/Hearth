@@ -155,6 +155,7 @@
 }
 
 .overlayLink:hover { color: #F5C97A; }
+.overlayLinkActive { color: #F5C97A; }
 
 @media (max-width: 768px) {
   .links, .cta { display: none; }
