@@ -1,8 +1,9 @@
 import { useState, useRef } from 'react';
 import styles from './Contact.module.css';
 import useInView from '../hooks/useInView';
+import PageHero from './PageHero';
 
-export default function Contact() {
+export default function Contact({ standalone }) {
   const sectionRef = useRef(null);
   const infoRef = useRef(null);
   const formWrapRef = useRef(null);
@@ -45,6 +46,14 @@ export default function Contact() {
   };
 
   return (
+    <>
+    {standalone && (
+      <PageHero
+        label="Get in Touch"
+        title={<>Come Find Us, <em>We'll Have Bread.</em></>}
+        subtitle="Custom cake orders, catering enquiries, or just to say hello — we'd love to hear from you."
+      />
+    )}
     <section id="contact" className={styles.section} ref={sectionRef}>
       <div className={styles.container}>
         <div className={styles.grid}>
@@ -177,5 +186,6 @@ export default function Contact() {
         </div>
       </div>
     </section>
+    </>
   );
 }

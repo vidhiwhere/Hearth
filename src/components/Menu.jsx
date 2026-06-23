@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import styles from './Menu.module.css';
+import PageHero from './PageHero';
 
 const categories = [
   { id: 'all',      label: 'All'       },
@@ -173,7 +174,7 @@ function MenuItem({ item, index }) {
   );
 }
 
-export default function Menu() {
+export default function Menu({ standalone }) {
   const [active, setActive] = useState('all');
   const sectionRef = useRef(null);
   const headerVisible = useInView(sectionRef);
@@ -190,6 +191,14 @@ export default function Menu() {
     .filter(g => g.items.length > 0);
 
   return (
+    <>
+    {standalone && (
+      <PageHero
+        label="The Hearth Collection"
+        title={<>Our <em>Full Menu</em></>}
+        subtitle="Prepared fresh each morning. Ingredients sourced within 100 km. Everything made entirely by hand."
+      />
+    )}
     <section id="menu" className={styles.section}>
       <div className={styles.container}>
 
@@ -242,5 +251,6 @@ export default function Menu() {
 
       </div>
     </section>
+    </>  
   );
 }

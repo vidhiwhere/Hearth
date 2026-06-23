@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './Hero.module.css';
 
 export default function Hero() {
@@ -38,19 +39,19 @@ export default function Hero() {
         </p>
 
         <div className={styles.actions}>
-          <a href="#menu" className={styles.btnPrimary} id="hero-menu-btn">
+          <Link to="/menu" className={styles.btnPrimary} id="hero-menu-btn">
             <span>🍞</span> Explore Menu
-          </a>
-          <a href="#about" className={styles.btnGhost} id="hero-story-btn">
+          </Link>
+          <Link to="/about" className={styles.btnGhost} id="hero-story-btn">
             Our Story
-          </a>
+          </Link>
         </div>
       </div>
 
-      <a href="#menu" className={styles.scrollCue} aria-label="Scroll down">
+      <Link to="/menu" className={styles.scrollCue} aria-label="Scroll down">
         <div className={styles.scrollLine} />
         <span>Scroll</span>
-      </a>
+      </Link>
     </section>
   );
 }

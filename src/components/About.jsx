@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import styles from './About.module.css';
 import useInView from '../hooks/useInView';
+import PageHero from './PageHero';
 
 const values = [
   { icon: '🌾', title: 'Locally Sourced', text: 'We partner with farms within 100 km for the freshest flour, eggs, and dairy.' },
@@ -8,13 +9,21 @@ const values = [
   { icon: '💚', title: 'Zero Food Waste', text: 'Day-old bread goes to local shelters. All our packaging is 100% compostable.' },
 ];
 
-export default function About() {
+export default function About({ standalone }) {
   const imgRef  = useRef(null);
   const txtRef  = useRef(null);
   const imgVis  = useInView(imgRef);
   const txtVis  = useInView(txtRef);
 
   return (
+    <>
+    {standalone && (
+      <PageHero
+        label="Our Story"
+        title={<>A Warm Place <em>Called Home</em></>}
+        subtitle="Born in 2012 from a small kitchen in Pune, grown into a gathering place built on bread and belonging."
+      />
+    )}
     <section id="about" className={styles.section}>
       <div className={styles.decor} />
       <div className={styles.container}>
@@ -76,5 +85,6 @@ export default function About() {
         </div>
       </div>
     </section>
+    </>
   );
 }
